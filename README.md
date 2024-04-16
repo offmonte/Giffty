@@ -118,7 +118,6 @@
   |-------|------|:-----------:|-----------|
   | nome | string | ✅ | Um nome curto para identificar o produto |
   | icone | string | ✅ | O nome do ícone conforme biblioteca material design |
-  | link | string | ✅ | O link do site onde encontrar aquele item |
   | descrição | string | ✅ | Uma breve descrição das informações do produto |
 
   **Códigos de status**
