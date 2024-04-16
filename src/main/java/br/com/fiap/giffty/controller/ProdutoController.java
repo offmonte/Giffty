@@ -1,5 +1,8 @@
 package br.com.fiap.giffty.controller;
 
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +30,7 @@ public class ProdutoController {
 
 
     @Autowired
-    private ProdutoRepository produtoRepository;
+    ProdutoRepository produtoRepository;
 
     @GetMapping
     public List<Produto> index() {
@@ -35,7 +38,7 @@ public class ProdutoController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(CREATED)
     public Produto create(@RequestBody Produto produto) {
         log.info("Cadastrando produto: {}", produto);
         return produtoRepository.save(produto);
@@ -51,12 +54,11 @@ public class ProdutoController {
     }
 
     @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(NO_CONTENT)
     public void destroy(@PathVariable Long id) {
         log.info("Apagando produto {}", id);
 
         verificarSeExisteProduto(id);
-
         produtoRepository.deleteById(id);
     }
 
@@ -71,8 +73,10 @@ public class ProdutoController {
     }
 
     private void verificarSeExisteProduto(Long id) {
-        produtoRepository.findById(id)
-                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado"));
+        produtoRepository
+            .findById(id)
+            .orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado"));
     }
 }
 

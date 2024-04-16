@@ -23,9 +23,9 @@ public class ValidationErrorHandler {
     @ResponseStatus(BAD_REQUEST)
     public List<ValidationError> handler(MethodArgumentNotValidException exception) {
         return exception.getFieldErrors()
-                       .stream()
-                       .map(ValidationError::new)
-                       .toList();
+                    .stream()
+                    .map(ValidationError::new)
+                    .toList();
     }
 }
 

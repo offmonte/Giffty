@@ -23,10 +23,6 @@ public class Produto {
     @NotBlank(message = "{produto.nome.notblank}")
     private String nome;
 
-    @NotBlank(message = "{produto.link.notblank}")
-    private String link;
-
-    @NotBlank(message = "{produto.descricao.notblank}")
     private String descricao;
 
-}  
+}
